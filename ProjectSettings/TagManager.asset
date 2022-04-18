@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Floor1
-  - Floor2
-  - DeathLine
+  - Floor
+  - Fake
+  - Nails
+  - Trampoline
+  - Conveyor_Right
+  - Conveyor_Left
   layers:
   - Default
   - TransparentFX

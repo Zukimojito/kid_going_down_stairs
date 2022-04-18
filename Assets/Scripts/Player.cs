@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float MoveSpeed = 5f;
+    [SerializeField] float MoveSpeed = 8f;
 
 
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         {
             transform.Translate(-MoveSpeed * Time.deltaTime, 0, 0);
         }
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
         }
@@ -30,14 +30,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Floor1")
-        {
-            Debug.Log("you are on floor1");
-        }
-        if (other.gameObject.tag == "Floor2")
-        {
-            Debug.Log("you are on floor2");
-        }
+
 
     }
 
