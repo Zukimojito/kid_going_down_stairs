@@ -30,9 +30,11 @@ public class FloorManager : MonoBehaviour
         int floorY = -6;
         for (int i = 0; i < floor_start; i++)
         {
-            GameObject floorInit = Instantiate(FloorPrefabs[i], transform);
+            int number = Random.Range(0, 2);
+            GameObject floorInit = Instantiate(FloorPrefabs[number], transform);
             floorInit.transform.position = new Vector3(Random.Range(-3.7f, 3.7f), floorY, 0f);
             floorY += 2;
         }
     }
+
 }
