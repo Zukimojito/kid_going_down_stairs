@@ -10,6 +10,7 @@ TagManager:
   - Trampoline
   - Conveyor_Right
   - Conveyor_Left
+  - Ceiling
   layers:
   - Default
   - TransparentFX
