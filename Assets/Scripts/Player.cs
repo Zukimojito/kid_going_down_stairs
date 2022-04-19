@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] float MoveSpeed = 8f;
     GameObject currentFloor;
-
+    public float HP = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("hello");
+
     }
 
     // Update is called once per frame
@@ -25,7 +26,6 @@ public class Player : MonoBehaviour
         {
             transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
         }
-
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("you are on floor");
                 currentFloor = other.gameObject;
+                HPPlayer(5);
+
             }
         }
         else if (other.gameObject.tag == "Fake")
@@ -52,6 +54,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("you are on Nails");
                 currentFloor = other.gameObject;
+                HPPlayer(-30);
             }
         }
         else if (other.gameObject.tag == "Trampoline")
@@ -83,6 +86,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("You touch the ceiling");
             currentFloor.GetComponent<BoxCollider2D>().enabled = false;
+            HPPlayer(-30);
         }
 
     }
@@ -92,6 +96,19 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "DeathLine")
         {
             Debug.Log("you are dead");
+        }
+    }
+
+    void HPPlayer(int num)
+    {
+        HP += num;
+        if (HP > 100)
+        {
+            HP = 100;
+        }
+        else if (HP < 0)
+        {
+            HP = 0;
         }
     }
 }
