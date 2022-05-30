@@ -26,10 +26,18 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.Q))
         {
             transform.Translate(-MoveSpeed * Time.deltaTime, 0, 0);
+            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<Animator>().SetBool("Run", true);
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
+            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<Animator>().SetBool("Run", true);
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("Run", false);
         }
         //Update Score every 2 seconds
         UpdateScore();
@@ -62,6 +70,7 @@ public class Player : MonoBehaviour
                 Debug.Log("you are on Nails");
                 currentFloor = other.gameObject;
                 HPPlayer(-30);
+                GetComponent<Animator>().SetTrigger("injury");
             }
         }
         else if (other.gameObject.tag == "Trampoline")
