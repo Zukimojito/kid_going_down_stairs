@@ -13,11 +13,14 @@ public class Player : MonoBehaviour
     int score;
     float scoreTime;
 
+    AudioSource sound;
+
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
         scoreTime = 0f;
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,7 +55,7 @@ public class Player : MonoBehaviour
                 Debug.Log("you are on floor");
                 currentFloor = other.gameObject;
                 HPPlayer(5);
-
+                other.gameObject.GetComponent<AudioSource>().Play();
             }
         }
         else if (other.gameObject.tag == "Fake")
@@ -61,6 +64,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("you are on Fake");
                 currentFloor = other.gameObject;
+                other.gameObject.GetComponent<AudioSource>().Play();
             }
         }
         else if (other.gameObject.tag == "Nails")
@@ -71,6 +75,7 @@ public class Player : MonoBehaviour
                 currentFloor = other.gameObject;
                 HPPlayer(-30);
                 GetComponent<Animator>().SetTrigger("injury");
+                other.gameObject.GetComponent<AudioSource>().Play();
             }
         }
         else if (other.gameObject.tag == "Trampoline")
@@ -79,6 +84,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("you are on Trampoline");
                 currentFloor = other.gameObject;
+                other.gameObject.GetComponent<AudioSource>().Play();
             }
         }
         else if (other.gameObject.tag == "Conveyor_Left")
@@ -87,6 +93,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("you are on Conveyor_Left");
                 currentFloor = other.gameObject;
+                other.gameObject.GetComponent<AudioSource>().Play();
             }
         }
         else if (other.gameObject.tag == "Conveyor_Right")
@@ -96,6 +103,7 @@ public class Player : MonoBehaviour
 
                 Debug.Log("you are on Conveyor_Right");
                 currentFloor = other.gameObject;
+                other.gameObject.GetComponent<AudioSource>().Play();
             }
         }
         else if (other.gameObject.tag == "Ceiling")
@@ -103,6 +111,7 @@ public class Player : MonoBehaviour
             Debug.Log("You touch the ceiling");
             currentFloor.GetComponent<BoxCollider2D>().enabled = false;
             HPPlayer(-30);
+            other.gameObject.GetComponent<AudioSource>().Play();
         }
 
     }
@@ -112,6 +121,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "DeathLine")
         {
             Debug.Log("you are dead");
+            sound.Play();
         }
     }
 
@@ -125,6 +135,7 @@ public class Player : MonoBehaviour
         else if (HP < 0)
         {
             HP = 0;
+
         }
     }
 
