@@ -9,10 +9,15 @@ public class Player : MonoBehaviour
     GameObject currentFloor;
     public float HP = 100f;
 
+    [SerializeField] Text ScoreText;
+    int score;
+    float scoreTime;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        score = 0;
+        scoreTime = 0f;
     }
 
     // Update is called once per frame
@@ -26,6 +31,8 @@ public class Player : MonoBehaviour
         {
             transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
         }
+        //Update Score every 2 seconds
+        UpdateScore();
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -109,6 +116,17 @@ public class Player : MonoBehaviour
         else if (HP < 0)
         {
             HP = 0;
+        }
+    }
+
+    void UpdateScore()
+    {
+        scoreTime += Time.deltaTime;
+        if (scoreTime > 2f)
+        {
+            score += 1;
+            scoreTime = 0f;
+            ScoreText.text = "Score : " + score.ToString();
         }
     }
 }
